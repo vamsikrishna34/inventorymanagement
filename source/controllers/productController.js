@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const Product = require('../models/Product');
 const InventoryLog = require('../models/InventoryLog');
 
-// @desc    Get all products (with filtering & pagination)
-// @route   GET /api/products?category=ID&warehouse=ID&page=1&limit=20
+
 exports.getProducts = async (req, res) => {
   try {
     const { category, warehouse, page = 1, limit = 20 } = req.query;
@@ -34,8 +33,7 @@ exports.getProducts = async (req, res) => {
   }
 };
 
-// @desc    Get single product
-// @route   GET /api/products/:id
+
 exports.getProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id)
@@ -48,8 +46,7 @@ exports.getProduct = async (req, res) => {
   }
 };
 
-// @desc    Create product
-// @route   POST /api/products
+
 exports.createProduct = async (req, res) => {
   try {
     const product = await Product.create(req.body);
@@ -60,8 +57,7 @@ exports.createProduct = async (req, res) => {
   }
 };
 
-// @desc    Update product
-// @route   PUT /api/products/:id
+
 exports.updateProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
@@ -72,8 +68,7 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
-// @desc    Delete product
-// @route   DELETE /api/products/:id
+
 exports.deleteProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
@@ -84,8 +79,7 @@ exports.deleteProduct = async (req, res) => {
   }
 };
 
-// @desc    Stock-in transaction (safe against race conditions)
-// @route   POST /api/products/:id/stock-in
+
 exports.stockIn = async (req, res) => {
   const session = await mongoose.startSession();
   session.startTransaction();
@@ -119,8 +113,7 @@ exports.stockIn = async (req, res) => {
   }
 };
 
-// @desc    Stock-out transaction (safe against race conditions)
-// @route   POST /api/products/:id/stock-out
+
 exports.stockOut = async (req, res) => {
   const session = await mongoose.startSession();
   session.startTransaction();

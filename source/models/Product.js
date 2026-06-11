@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema({
   warehouse: { type: mongoose.Schema.Types.ObjectId, ref: 'Warehouse' }
 }, { timestamps: true });
 
-// Performance indexes
+
 productSchema.index({ sku: 1 }, { unique: true });
 productSchema.index({ category: 1 });
 productSchema.index({ warehouse: 1 });
