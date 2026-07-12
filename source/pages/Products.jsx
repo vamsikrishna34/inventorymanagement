@@ -119,4 +119,5 @@ export default function Products() {
       )}
     </div>
   );
+  {data?.data?.map(p => <ProductRow key={p._id} p={p} onEdit={() => setEditingProduct(p)} 
 }

@@ -28,3 +28,8 @@ function App() {
   );
 }
 export default App;
+
+<Routes>
+  <Route path="/" element={<Suspense fallback={<p>Loading...</p>}><Dashboard /></Suspense>} />
+  <Route path="/products" element={<Suspense fallback={<p>Loading...</p>}><Products /></Suspense>} />
+</Routes>

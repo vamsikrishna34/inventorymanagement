@@ -41,3 +41,10 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🌐 Server running on port ${PORT}`));
+
+const compression = require('compression');
+// ... (after app.use(express.json()))
+app.use(compression()); // Gzip responses
+app.use(helmet({
+  contentSecurityPolicy: process.env.NODE_ENV === 'production' ? undefined : false // Disable in dev
+}));
